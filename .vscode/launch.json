@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/rrun",
+            "args": [
+                "start",
+                "test7"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "preLaunchTask": "Build with Makefile",
+        }
+    ],
+    "version": "2.0.0"
+}
