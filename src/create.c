@@ -30,14 +30,14 @@ pid_t detach_process() {
     return pid;
 }
 
-int save_pid(char *path, pid_t pid) {
+int save_message(char *path, char *message) {
     AUTO_CLOSE_FILE FILE *file = fopen(path, "w");
     if (file == NULL) {
         perror("Failed to open file");
         exit(EXIT_FAILURE);
     }
 
-    fprintf(file, "%d", pid);
+    fprintf(file, "%s", message);
 
     return 0;
 }
@@ -74,12 +74,10 @@ int create_container(char *container_id) {
         // Wait for parent process to freeze this process
         usleep(0.1 * 1000 * 1000);  // 0.1 seconds
 
-        // After thawed
-        printf("Hello, world!");
-        fflush(stdout);
-
         pid_t current_pid = getpid();
-        save_pid("./pid", current_pid);
+        char message[100];
+        sprintf(message, "In container!\nCurrent pid: %d\n", current_pid);
+        save_message("./container-message", message);
 
         exit(EXIT_SUCCESS);
     }
